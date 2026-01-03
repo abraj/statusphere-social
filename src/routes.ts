@@ -2,6 +2,8 @@ import path from 'node:path'
 import express from 'express'
 
 import type { AppContext } from '#/types'
+import { home } from '#/pages/home'
+import { page } from '#/lib/view'
 
 // Helper function for defining routes
 const handler =
@@ -28,7 +30,7 @@ export const createRouter = (ctx: AppContext) => {
   router.get(
     '/',
     handler(async (_req, res) => {
-      return res.send('Home page')
+      return res.type('html').send(page(home()))
     })
   )
 
