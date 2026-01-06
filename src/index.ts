@@ -6,6 +6,7 @@ import { pino } from 'pino'
 import { env } from '#/lib/env'
 import { createRouter } from '#/routes'
 import type { AppContext } from '#/types'
+import { onelyidMiddleware, type OnelyidConfig } from 'onelyid'
 
 export class Server {
   constructor(
@@ -29,6 +30,15 @@ export class Server {
     const router = createRouter(ctx)
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
+
+    const onelyidConfig: OnelyidConfig = {
+      // dbPath: env.DB_PATH,
+      // cookieSecret: env.COOKIE_SECRET,
+      // publicUrl: env.PUBLIC_URL,
+      // logger,
+    };
+    app.use(onelyidMiddleware(onelyidConfig))
+
     app.use(router)
     app.use((_req, res) => res.sendStatus(404))
 
