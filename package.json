@@ -21,6 +21,7 @@
     "dotenv": "^17.2.3",
     "envalid": "^8.1.1",
     "express": "^5.2.1",
+    "onelyid": "file:../onelyid-local",
     "pino": "^10.1.0",
     "uhtml": "^4.7.1"
   },
